@@ -381,9 +381,9 @@ public class MainActivity extends AppCompatActivity {
         x.Ext.init(getApplication());
     }
 
-    private GalleryFinal.OnHanlderResultCallback mOnHanlderResultCallback = new GalleryFinal.OnHanlderResultCallback() {
+    private GalleryFinal.OnHandlerResultCallback mOnHanlderResultCallback = new GalleryFinal.OnHandlerResultCallback() {
         @Override
-        public void onHanlderSuccess(int reqeustCode, List<PhotoInfo> resultList) {
+        public void onHandlerSuccess(int requestCode, List<PhotoInfo> resultList) {
             if (resultList != null) {
                 mPhotoList.addAll(resultList);
                 mChoosePhotoListAdapter.notifyDataSetChanged();
@@ -391,7 +391,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onHanlderFailure(int requestCode, String errorMsg) {
+        public void onHandlerFailure(int requestCode, String errorMsg) {
             Toast.makeText(MainActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
         }
     };
