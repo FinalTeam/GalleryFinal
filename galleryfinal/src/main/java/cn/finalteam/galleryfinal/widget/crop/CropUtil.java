@@ -83,7 +83,7 @@ class CropUtil {
             exifDest.saveAttributes();
             return true;
         } catch (IOException e) {
-            ILogger.e(e);
+            e.printStackTrace();
             return false;
         }
     }

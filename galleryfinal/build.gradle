@@ -23,5 +23,12 @@ dependencies {
     compile 'cn.finalteam:toolsfinal:1.1.4'
     compile 'com.android.support:support-v4:23.1.1'
 }
+ext {
+    PUBLISH_GROUP_ID = 'cn.finalteam.galleryfinal'
+    PUBLISH_ARTIFACT_ID = 'galleryfinal'
+    PUBLISH_VERSION = '1.0.0'
+}
+
+apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
 
 apply from: "../bintray.gradle"
