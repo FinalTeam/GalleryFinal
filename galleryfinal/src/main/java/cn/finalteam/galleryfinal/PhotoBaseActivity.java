@@ -130,10 +130,23 @@ public abstract class PhotoBaseActivity extends Activity implements EasyPermissi
 
         ILogger.d("create folder=" + toFile.getAbsolutePath());
         if (suc) {
-            mTakePhotoUri = Uri.fromFile(toFile);
+            //mTakePhotoUri = Uri.fromFile(toFile);
+            //Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            //captureIntent.putExtra(MediaStore.EXTRA_OUTPUT, mTakePhotoUri);
+            //startActivityForResult(captureIntent, GalleryFinal.TAKE_REQUEST_CODE);
             Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            captureIntent.putExtra(MediaStore.EXTRA_OUTPUT, mTakePhotoUri);
-            startActivityForResult(captureIntent, GalleryFinal.TAKE_REQUEST_CODE);
+            if(android.os.Build.VERSION.SDK_INT < 24){
+                mTakePhotoUri = Uri.fromFile(toFile);
+
+                captureIntent.putExtra(MediaStore.EXTRA_OUTPUT, mTakePhotoUri);
+                startActivityForResult(captureIntent, GalleryFinal.TAKE_REQUEST_CODE);
+            }else{
+                ContentValues contentValues = new ContentValues(1);
+                contentValues.put(MediaStore.Images.Media.DATA, toFile.getAbsolutePath());
+                Uri uri = getApplication().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,contentValues);
+                captureIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+                startActivityForResult(captureIntent, RESULT_OK);
+            }
         } else {
             takePhotoFailure();
             ILogger.e("create file failure");
