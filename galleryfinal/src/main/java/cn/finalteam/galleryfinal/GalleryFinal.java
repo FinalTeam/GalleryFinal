@@ -37,6 +37,7 @@ import cn.finalteam.toolsfinal.io.FileUtils;
  * Date:15/12/2 上午11:05
  */
 public class GalleryFinal {
+    //test2
     static final int TAKE_REQUEST_CODE = 1001;
 
     static final int PERMISSIONS_CODE_GALLERY = 2001;
